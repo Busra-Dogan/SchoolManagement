@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SchoolManagement.Business.Concrete
 {
-    public class ClassManager: IClassService
+    public class ClassManager : IClassService
     {
         //dependecy injection
         IClass _class;
@@ -31,31 +31,41 @@ namespace SchoolManagement.Business.Concrete
             return new SuccessResult(Messages.ClassAdded);
         }
 
-        public IResult Delete(Class classContract)
+        public IResult Delete(int classId)
         {
-            if (classContract != null)
+            if (classId <= 0)
             {
-                _class.Delete(classContract);
-                return new SuccessResult(Messages.ClassDeleted);
+                return new ErrorResult(ErrorMessages.ClassContractNotBeNull);
             }
             else
             {
-                return new ErrorResult(ErrorMessages.ClassContractNotBeNull);
+                Class getClassforDelete = GetClassById(classId).Data;
+
+                if (getClassforDelete != null)
+                {
+                    _class.Delete(getClassforDelete);
+                    return new SuccessResult(Messages.ClassDeleted);
+                }
+                else
+                {
+                    return new ErrorResult(ErrorMessages.ClassContractNotBeNull);
+                }
             }
         }
 
         public IDataResult<List<Class>> GetAll()
         {
-            List<Class> classes = _class.GetAll();
+            //List<Class> classes = _class.GetAllClass();
 
-            if (classes != null && classes.Count != 0)
-            {
-                return new SuccessDataResult<List<Class>>(classes, Messages.ClassListed);
-            }
-            else
-            {
-                return new ErrorDataResult<List<Class>>(classes, ErrorMessages.NoRegisteredClass);
-            }
+            //if (classes != null && classes.Count != 0)
+            //{
+            //    return new SuccessDataResult<List<Class>>(classes, Messages.ClassListed);
+            //}
+            //else
+            //{
+            //    return new ErrorDataResult<List<Class>>(classes, ErrorMessages.NoRegisteredClass);
+            //}
+            return null;
         }
 
         public IDataResult<List<ClassListDto>> GetAllClass()
@@ -69,6 +79,20 @@ namespace SchoolManagement.Business.Concrete
             else
             {
                 return new ErrorDataResult<List<ClassListDto>>(AllClasses, ErrorMessages.NoRegisteredClass);
+            }
+        }
+
+        public IDataResult<Class> GetClassById(int classId)
+        {
+            Class getClassbyId = _class.GetClassById(classId);
+            
+            if (getClassbyId != null)
+            {
+                return new SuccessDataResult<Class>(getClassbyId, Messages.ClassListed);
+            }
+            else
+            {
+                return new ErrorDataResult<Class>(getClassbyId, ErrorMessages.NoRegisteredClass);
             }
         }
     }

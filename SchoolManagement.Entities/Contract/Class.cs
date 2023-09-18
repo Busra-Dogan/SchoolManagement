@@ -16,6 +16,9 @@ namespace SchoolManagement.Entities
         private int whichGrade;
         private int classType;
         private int schoolId;
+        private DateTime systemDate;
+        private DateTime updateSystemDate;
+
 
         [Required]
         public int Id
@@ -35,21 +38,35 @@ namespace SchoolManagement.Entities
             get => quota;
             set => quota = value;
         }
-        public int WhichGrade
-        {
-            get => whichGrade;
-            set => whichGrade = value;
-        }
+
         public int ClassType
         {
             get => classType;
             set => classType = value;
         }
+
         public int SchoolId
         {
             get => schoolId;
             set => schoolId = value;
         }
 
+        public int WhichGrade
+        {
+            get => whichGrade;
+            set => whichGrade = value;
+        }
+
+        public DateTime SystemDate
+        {
+            get => systemDate;
+            set => systemDate = value;
+        }
+
+        public DateTime UpdateSystemDate
+        {
+            get => updateSystemDate;
+            set => updateSystemDate = value;
+        }
     }
 }

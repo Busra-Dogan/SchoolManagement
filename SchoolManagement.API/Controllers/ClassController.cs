@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.Business.Abstract;
+using SchoolManagement.Entities;
 
 namespace SchoolManagement.API.Controllers
 {
@@ -29,6 +30,17 @@ namespace SchoolManagement.API.Controllers
         public IActionResult GetAllClass()
         {
             var result = _classService.GetAllClass();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+
+        [HttpDelete("deleteClass/{id:int}")]
+        public IActionResult DeleteClassById(int id)
+        {
+            var result = _classService.Delete(id);
             if (result.Success)
             {
                 return Ok(result);

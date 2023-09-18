@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagement.Core.DataAccess;
+using SchoolManagement.Core.Results;
 using SchoolManagement.DataAccess.Abstract;
 using SchoolManagement.Entities;
 using SchoolManagement.Entities.Dtos;
@@ -16,30 +17,41 @@ namespace SchoolManagement.DataAccess.Concrete
     {
         public List<ClassListDto> GetAllClass()
         {
-            //List<SqlParameter> sqlParms = new List<SqlParameter>
-            //{
-            //    new SqlParameter { ParameterName = "@EmployeeId", Value = employee.EmployeeID },
-            //    new SqlParameter { ParameterName = "@FirstName ", Value = employee.FirstName },
-            //    new SqlParameter { ParameterName = "@LastName", Value = employee.LastName},
-            //    new SqlParameter { ParameterName = "@MiddleInitial", Value = employee.MiddleName }
-            //};
-            //SchoolManagementDbContext db = new SchoolManagementDbContext();
-            //List<ClassListDto> classList = db.Database.FromSql($"EXEC SCH.sel_Class");
-            //List<ClassListDto> classList = (List<ClassListDto>)db.Set<ClassListDto>().FromSql($"EXEC SCH.sel_Class");
-
-            using (SchoolManagementDbContext context = new SchoolManagementDbContext())
+            using (var context = new SchoolManagementDbContext())
             {
-                var result = from c in context.CLASS
-                             join f in context.PARAMETER
-                             on p.CategoryId equals c.CategoryId
-                             select new ProductDetailDto
-                             {
-                                 ProductId = p.ProductId,
-                                 ProductName = p.ProductName,
-                                 CategoryName = c.CategoryName,
-                                 UnitsInStock = p.UnitsInStock
-                             };
+                var result = from classtable in context.CLASS
+                                join school in context.SCHOOL
+                                on classtable.SchoolId equals school.Id
+                                select new ClassListDto { 
+                                    Id = classtable.Id,
+                                    ClassName = classtable.ClassName, 
+                                    Quota = classtable.Quota, 
+                                    SchoolName = school.Name,
+                                    WhichGrade = classtable.WhichGrade,
+                                    SystemDate = classtable.SystemDate};
+
                 return result.ToList();
+            }
+        }
+
+        public Class GetClassById(int classId)
+        {
+            using (var context = new SchoolManagementDbContext())
+            {
+                var result = from classtable in context.CLASS
+                             where classtable.Id == classId
+                             select new Class
+                             {
+                                 Id = classtable.Id,
+                                 ClassName = classtable.ClassName,
+                                 Quota = classtable.Quota,
+                                 WhichGrade = classtable.WhichGrade,
+                                 SchoolId = classtable.SchoolId,
+                                 SystemDate = classtable.SystemDate,
+                                 UpdateSystemDate = classtable.UpdateSystemDate
+                             };
+
+                return result.FirstOrDefault();
             }
         }
     }

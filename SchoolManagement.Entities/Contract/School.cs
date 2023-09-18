@@ -9,21 +9,21 @@ namespace SchoolManagement.Entities
 {
     public class School : ContractBase
     {
-        private int schoolId;
-        private string? schoolName;
+        private int id;
+        private string? name;
         private string? province;
         private string? district;
         private int quota;
 
-        public int SchoolId
+        public int Id
         {
-            get => schoolId;
-            set => schoolId = value;
+            get => id;
+            set => id = value;
         }
-        public string? SchoolName
+        public string? Name
         {
-            get => schoolName;
-            set => schoolName = value;
+            get => name;
+            set => name = value;
         }
         public string? Province
         {

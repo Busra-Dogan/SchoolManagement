@@ -59,7 +59,7 @@ namespace SchoolManagement.Business.Concrete
 
         public IDataResult<School> GetSchoolById(int schoolId)
         {
-            School school = _school.Get(c => c.SchoolId == schoolId);
+            School school = _school.Get(c => c.Id == schoolId);
             if (school != null)
             {
                 return new SuccessDataResult<School>(school, Messages.GetSchoolInformation);

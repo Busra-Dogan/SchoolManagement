@@ -9,7 +9,7 @@ namespace SchoolManagement.Entities.Abstract
 {
     public abstract class ContractBase: IEntity
     {
-        public DateTime? SystemDate { get; set; }
-        //public DateTime? UpdateSystemDate { get; set; }
+        public DateTime SystemDate { get; set; }
+        public DateTime UpdateSystemDate { get; set; }
     }
 }

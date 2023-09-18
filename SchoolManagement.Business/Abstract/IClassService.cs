@@ -12,10 +12,9 @@ namespace SchoolManagement.Business.Abstract
     public interface IClassService
     {
         IDataResult<List<Class>> GetAll();
-        //IDataResult<Class> GetById(int categoryId);
-        IResult Add(Class category);
-        //IResult Update(Class category);
-        IResult Delete(Class category);
+        IDataResult<Class> GetClassById(int classId);
+        IResult Add(Class classforAdd);
+        IResult Delete(int classId);
         IDataResult<List<ClassListDto>> GetAllClass();
 
     }

@@ -12,5 +12,7 @@ namespace SchoolManagement.DataAccess.Abstract
     public interface IClass : IEntityRepository<Class>
     {
         List<ClassListDto> GetAllClass();
+        Class GetClassById(int classId);
+
     }
 }

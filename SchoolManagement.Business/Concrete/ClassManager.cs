@@ -55,17 +55,16 @@ namespace SchoolManagement.Business.Concrete
 
         public IDataResult<List<Class>> GetAll()
         {
-            //List<Class> classes = _class.GetAllClass();
+            List<Class> classes = _class.GetAll();
 
-            //if (classes != null && classes.Count != 0)
-            //{
-            //    return new SuccessDataResult<List<Class>>(classes, Messages.ClassListed);
-            //}
-            //else
-            //{
-            //    return new ErrorDataResult<List<Class>>(classes, ErrorMessages.NoRegisteredClass);
-            //}
-            return null;
+            if (classes != null && classes.Count != 0)
+            {
+                return new SuccessDataResult<List<Class>>(classes, Messages.ClassListed);
+            }
+            else
+            {
+                return new ErrorDataResult<List<Class>>(classes, ErrorMessages.NoRegisteredClass);
+            }
         }
 
         public IDataResult<List<ClassListDto>> GetAllClass()

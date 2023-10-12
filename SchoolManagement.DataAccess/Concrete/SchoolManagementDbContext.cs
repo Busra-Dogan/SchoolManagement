@@ -13,7 +13,7 @@ namespace SchoolManagement.DataAccess.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=ARC293NB\SQLEXPRESS;Database=School;Integrated Security=true;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer(@"Server=ARC134NB\MSSQLSERVER02;Database=School;Integrated Security=true;TrustServerCertificate=True");
             base.OnConfiguring(optionsBuilder);
         }
         public DbSet<Class> CLASS { get; set; }
@@ -32,6 +32,8 @@ namespace SchoolManagement.DataAccess.Concrete
             modelBuilder.Entity<Class>().ToTable("CLASS", "SCH");
             modelBuilder.Entity<Parameter>().ToTable("PARAMETER", "COR").HasNoKey();
             modelBuilder.Entity<School>().ToTable("SCHOOL", "SCH");
+            modelBuilder.Entity<Student>().ToTable("STUDENT", "SCH");
+
         }
     }
 }

@@ -24,6 +24,9 @@ namespace SchoolManagement.Business.DependencyResolves.Autofac
             builder.RegisterType<ParameterManager>().As<IParameterService>();
             builder.RegisterType<EfParameter>().As<IParameter>();
 
+            builder.RegisterType<StudentManager>().As<IStudentService>().SingleInstance();
+            builder.RegisterType<EfStudent>().As<IStudent>().SingleInstance();
+
             //builder.RegisterType<UserManager>().As<IUserService>();
             //builder.RegisterType<EfUserDal>().As<IUserDal>();
 

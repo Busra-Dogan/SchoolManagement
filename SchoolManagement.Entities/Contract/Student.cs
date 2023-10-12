@@ -9,27 +9,75 @@ namespace SchoolManagement.Entities
 {
     public class Student : ContractBase
     {
-        private int studentId;
-        private string? studentName;
-        private string? studentSurname;
-        private int classId;
+        private int id;
+        private string name;
+        private string surname;
+        private string identityNumber;
+        private DateTime birthDate;
+        private string motherName;
+        private string fatherName;
+        private string telephone;
+        private string eMailAddress;
+        private string address;
+        private string parentPhoneNumber;
+        private int? classId;
 
-        public int StudentId
+        public int Id
         {
-            get => studentId;
-            set => studentId = value;
+            get => id;
+            set => id = value;
         }
-        public string? StudentName
+        public string Name
         {
-            get => studentName;
-            set => studentName = value;
+            get => name;
+            set => name = value;
         }
-        public string? StudentSurname
+        public string Surname
         {
-            get => studentSurname;
-            set => studentSurname = value;
+            get => surname;
+            set => surname = value;
         }
-        public int ClassId
+        public string IdentityNumber
+        {
+            get => identityNumber;
+            set => identityNumber = value;
+        }
+        public DateTime BirthDate
+        {
+            get => birthDate;
+            set => birthDate = value;
+        }
+        public string MotherName
+        {
+            get => motherName;
+            set => motherName = value;
+        }
+        public string FatherName
+        {
+            get => fatherName;
+            set => fatherName = value;
+        }
+        public string Telephone
+        {
+            get => telephone;
+            set => telephone = value;
+        }
+        public string EMailAddress
+        {
+            get => eMailAddress;
+            set => eMailAddress = value;
+        }
+        public string Address
+        {
+            get => address;
+            set => address = value;
+        }
+        public string ParentPhoneNumber
+        {
+            get => parentPhoneNumber;
+            set => parentPhoneNumber = value;
+        }
+        public int? ClassId
         {
             get => classId;
             set => classId = value;

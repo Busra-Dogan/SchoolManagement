@@ -1,34 +1,23 @@
 ﻿using SchoolManagement.Entities.Abstract;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagement.Entities
 {
     public class Teacher : ContractBase
     {
-        private int teacherId;
-        private string? teacherName;
-        private string? teacherSurname;
-        private int schoolId;
+        private int id;
+        private string? nameSurname;
         private int lessonId;
+        private int schoolId;
 
-        public int TeacherId
+        public int Id
         {
-            get => teacherId;
-            set => teacherId = value;
+            get => id;
+            set => id = value;
         }
-        public string? TeacherName
+        public string? NameSurname
         {
-            get => teacherName;
-            set => teacherName = value;
-        }
-        public string? TeacherSurname
-        {
-            get => teacherSurname;
-            set => teacherSurname = value;
+            get => nameSurname;
+            set => nameSurname = value;
         }
         public int LessonId
         {

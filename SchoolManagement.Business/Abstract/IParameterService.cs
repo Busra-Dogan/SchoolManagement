@@ -10,7 +10,6 @@ namespace SchoolManagement.Business.Abstract
 {
     public interface IParameterService
     {
-        //IDataResult<List<Parameter>> GetAll();
         IDataResult<List<Parameter>> GetParameterByParamType(string paramType);
         IResult Add(Parameter parameter);
         //IResult Update(Class category);

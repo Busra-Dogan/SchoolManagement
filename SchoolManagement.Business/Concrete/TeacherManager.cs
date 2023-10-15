@@ -1,6 +1,8 @@
 ﻿using SchoolManagement.Business.Abstract;
+using SchoolManagement.Core.Constants;
 using SchoolManagement.Core.Results;
 using SchoolManagement.DataAccess.Abstract;
+using SchoolManagement.DataAccess.Concrete;
 using SchoolManagement.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,34 +14,55 @@ namespace SchoolManagement.Business.Concrete
 {
     public class TeacherManager : ITeacherService
     {
-        ITeacher _iTeacher;
+        ITeacher _teacher;
         public TeacherManager(ITeacher iTeacher)
         {
-            _iTeacher = iTeacher;
+            _teacher = iTeacher;
         }
         public IResult Add(Teacher teacher)
         {
-            throw new NotImplementedException();
+            _teacher.Add(teacher);
+            return new SuccessResult(Messages.TeacherAdded);
         }
 
-        public IResult Delete(Teacher teacher)
+        public IResult Delete(int teacherId)
         {
-            throw new NotImplementedException();
+            if (teacherId == 0)
+            {
+                return new ErrorResult(ErrorMessages.TeacherIdIsNull);
+            }
+            else
+            {
+                Teacher teacherInformation = GetTeacherById(teacherId).Data;
+
+                if (teacherInformation != null)
+                {
+                    _teacher.Delete(teacherInformation);
+                    return new SuccessResult(Messages.TeacherDeleted);
+                }
+                else
+                {
+                    return new ErrorResult(ErrorMessages.TeacherInfoIsNotFind);
+                }
+            }
         }
 
         public IDataResult<List<Teacher>> GetAll()
         {
-            throw new NotImplementedException();
+            List<Teacher> teachers =  _teacher.GetAll();
+            return new SuccessDataResult<List<Teacher>>(teachers, Messages.TeachersListed);
         }
 
-        public IDataResult<Teacher> GetSchoolById(int teacherId)
+        public IDataResult<Teacher> GetTeacherById(int teacherId)
         {
-            throw new NotImplementedException();
+            Teacher teacher = _teacher.GetTeacherById(teacherId);
+            return new SuccessDataResult<Teacher>(teacher, Messages.GetTeacherInformation);
         }
 
         public IResult Update(Teacher teacher)
         {
-            throw new NotImplementedException();
+            _teacher.Update(teacher);
+            return new SuccessResult(Messages.TeacherInformationUpdated);
         }
     }
 }

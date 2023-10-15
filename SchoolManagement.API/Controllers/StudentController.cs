@@ -29,6 +29,14 @@ namespace SchoolManagement.API.Controllers
         public IActionResult AddStudent(Student student)
         {
             var result = _studentService.Add(student);
+            return Ok(result);
+        }
+
+
+        [HttpGet("getStudentById/{studentId:int}")]
+        public IActionResult GetStudentById(int studentId)
+        {
+            var result = _studentService.GetStudentById(studentId);
             if (result.Success)
             {
                 return Ok(result);

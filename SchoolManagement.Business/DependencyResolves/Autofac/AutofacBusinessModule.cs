@@ -27,8 +27,11 @@ namespace SchoolManagement.Business.DependencyResolves.Autofac
             builder.RegisterType<StudentManager>().As<IStudentService>().SingleInstance();
             builder.RegisterType<EfStudent>().As<IStudent>().SingleInstance();
 
-            //builder.RegisterType<UserManager>().As<IUserService>();
-            //builder.RegisterType<EfUserDal>().As<IUserDal>();
+            builder.RegisterType<TeacherManager>().As<ITeacherService>().SingleInstance();
+            builder.RegisterType<EfTeacher>().As<ITeacher>().SingleInstance();
+
+            builder.RegisterType<TeacherSyllabusManager>().As<ITeacherSyllabusService>().SingleInstance();
+            builder.RegisterType<EfTeacherSyllabus>().As<ITeacherSyllabus>().SingleInstance();
 
             //builder.RegisterType<AuthManager>().As<IAuthService>();
             //builder.RegisterType<JwtHelper>().As<ITokenHelper>();

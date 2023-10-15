@@ -22,12 +22,12 @@ namespace SchoolManagement.Business.Concrete
 
         public IResult Add(Parameter parameterContract)
         {
-            if (String.IsNullOrEmpty(parameterContract.ParamType) || String.IsNullOrEmpty(parameterContract.ParamCode))
+            if (String.IsNullOrEmpty(parameterContract.ParamType))
             {
-                return new ErrorResult("Parametre tanımlarken ParamType ve ParamCode alanı zorunludur.");
+                return new ErrorResult(ErrorMessages.ParamTypeRequired);
             }
             _parameter.Add(parameterContract);
-            return new SuccessResult("Parametre tanımı yapılmıştır.");
+            return new SuccessResult(Messages.ParameterAdded);
         }
 
         public IResult Delete(Parameter parameterContract)

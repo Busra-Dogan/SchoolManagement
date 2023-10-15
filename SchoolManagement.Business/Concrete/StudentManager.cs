@@ -68,17 +68,15 @@ namespace SchoolManagement.Business.Concrete
 
         public IDataResult<Student> GetStudentById(int studentId)
         {
-            //Student getStudentbyId = _student.Get(classId);
-
-            //if (getClassbyId != null)
-            //{
-            //    return new SuccessDataResult<Class>(getClassbyId, Messages.ClassListed);
-            //}
-            //else
-            //{
-            //    return new ErrorDataResult<Class>(getClassbyId, ErrorMessages.NoRegisteredClass);
-            //}
-            return null;
+            Student student = _student.Get(p => p.Id == studentId);
+            if (student == null)
+            {
+                return new ErrorDataResult<Student>(ErrorMessages.StudentInfoNotFound);
+            }
+            else
+            {
+                return new SuccessDataResult<Student>(student,Messages.GetStudentInformation);
+            }
         }
     }
 }

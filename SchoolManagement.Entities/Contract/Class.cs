@@ -14,7 +14,7 @@ namespace SchoolManagement.Entities
         private string? className;
         private int quota;
         private int whichGrade;
-        private int classType;
+        //private int classType;
         private int schoolId;
         private DateTime systemDate;
         private DateTime updateSystemDate;
@@ -39,11 +39,11 @@ namespace SchoolManagement.Entities
             set => quota = value;
         }
 
-        public int ClassType
-        {
-            get => classType;
-            set => classType = value;
-        }
+        //public int ClassType
+        //{
+        //    get => classType;
+        //    set => classType = value;
+        //}
 
         public int SchoolId
         {

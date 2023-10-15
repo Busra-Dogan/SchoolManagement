@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolManagement.Entities;
+using SchoolManagement.Entities.Contract;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
@@ -21,8 +22,9 @@ namespace SchoolManagement.DataAccess.Concrete
         public DbSet<School> SCHOOL { get; set; }
         public DbSet<Student> STUDENT { get; set; }
         public DbSet<Teacher> TEACHER { get; set; }
+        public DbSet<TeacherSyllabus> TEACHERSYLLABUS { get; set; }
 
-    
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //Configure default schema
@@ -33,6 +35,8 @@ namespace SchoolManagement.DataAccess.Concrete
             modelBuilder.Entity<Parameter>().ToTable("PARAMETER", "COR").HasNoKey();
             modelBuilder.Entity<School>().ToTable("SCHOOL", "SCH");
             modelBuilder.Entity<Student>().ToTable("STUDENT", "SCH");
+            modelBuilder.Entity<Teacher>().ToTable("Teacher", "SCH");
+            modelBuilder.Entity<TeacherSyllabus>().ToTable("TeacherSyllabus", "SCH");
 
         }
     }

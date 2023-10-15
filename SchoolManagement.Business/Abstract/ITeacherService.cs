@@ -11,7 +11,7 @@ namespace SchoolManagement.Business.Abstract
     public interface ITeacherService
     {
         IDataResult<List<Teacher>> GetAll();
-        IDataResult<Teacher> GetSchoolById(int teacherId);
+        IDataResult<Teacher> GetTeacherById(int teacherId);
         IResult Add(Teacher teacher);
         IResult Update(Teacher teacher);
         IResult Delete(int id);

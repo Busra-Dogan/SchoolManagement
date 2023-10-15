@@ -1,6 +1,6 @@
 ﻿using SchoolManagement.Core.DataAccess;
 using SchoolManagement.Core.Results;
-using SchoolManagement.Entities;
+using SchoolManagement.Entities.Contract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace SchoolManagement.DataAccess.Abstract
 {
-    public interface ITeacher : IEntityRepository<Teacher>
+    public interface ITeacherSyllabus : IEntityRepository<TeacherSyllabus>
     {
-        Teacher GetTeacherById(int teacherId);
+        IDataResult<List<TeacherSyllabus>> GetAllLessonsByTeacherId(int teacherId);
     }
 }

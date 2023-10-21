@@ -78,5 +78,15 @@ namespace SchoolManagement.Business.Concrete
                 return new SuccessDataResult<Student>(student,Messages.GetStudentInformation);
             }
         }
+
+        public IResult Update(Student studentforAdd)
+        {
+            if (String.IsNullOrEmpty(studentforAdd.IdentityNumber))
+            {
+                return new ErrorResult(ErrorMessages.QutoaNotSmallOrEqualZero);
+            }
+            _student.Update(studentforAdd);
+            return new SuccessResult(Messages.StudentAdded);
+        }
     }
 }

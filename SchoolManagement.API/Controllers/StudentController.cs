@@ -43,5 +43,16 @@ namespace SchoolManagement.API.Controllers
             }
             return BadRequest(result);
         }
+
+        [HttpPut("updateStudentInfo")]
+        public IActionResult UpdateStudentInfo(Student student)
+        {
+            var result = _studentService.Update(student);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
     }
 }

@@ -23,7 +23,7 @@ namespace SchoolManagement.Core.Constants
         public static string GetSchoolInformation = "Okul bilgileri getirilmiştir.";
         public static string SchoolListed = "Kayıtlı okullar listelenmiştir.";
 
-        public static string StudentAddes = "Öğrenci sisteme başarılı bir şekilde kaydedilmiştir.";
+        public static string StudentAdded = "Öğrenci sisteme başarılı bir şekilde kaydedilmiştir.";
         public static string StudentDeleted = "Öğrenci sistemden başarılı bir şekilde silinmiştir.";
         public static string StudentInformationUpdated = "Öğrenci bilgileri başarılı bir şekilde güncellenmiştir.";
         public static string GetStudentInformation = "Öğrenci bilgileri başarılı bir şekilde getirilmiştir.";

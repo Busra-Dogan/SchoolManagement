@@ -15,5 +15,7 @@ namespace SchoolManagement.Business.Abstract
         IDataResult<Student> GetStudentById(int studentId);
         IResult Add(Student studentforAdd);
         IResult Delete(int studentId);
+        IResult Update(Student student);
+
     }
 }

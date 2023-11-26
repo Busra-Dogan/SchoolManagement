@@ -13,7 +13,7 @@ namespace SchoolManagement.Business.Abstract
     {
         IDataResult<List<Student>> GetAll();
         IDataResult<Student> GetStudentById(int studentId);
-        IResult Add(Student studentforAdd);
+        IDataResult<Student> Add(Student studentforAdd);
         IResult Delete(int studentId);
         IResult Update(Student student);
 

@@ -23,6 +23,8 @@ namespace SchoolManagement.DataAccess.Concrete
         public DbSet<Student> STUDENT { get; set; }
         public DbSet<Teacher> TEACHER { get; set; }
         public DbSet<TeacherSyllabus> TEACHERSYLLABUS { get; set; }
+        public DbSet<StudentLectureNote> StudentLectureNote { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -37,6 +39,8 @@ namespace SchoolManagement.DataAccess.Concrete
             modelBuilder.Entity<Student>().ToTable("STUDENT", "SCH");
             modelBuilder.Entity<Teacher>().ToTable("Teacher", "SCH");
             modelBuilder.Entity<TeacherSyllabus>().ToTable("TeacherSyllabus", "SCH");
+            modelBuilder.Entity<StudentLectureNote>().ToTable("StudentLectureNote", "SCH", tb => tb.HasTrigger("upd_StudentNoteAverageAfterUpdated"));
+
 
         }
     }

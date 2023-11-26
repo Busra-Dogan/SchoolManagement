@@ -5,6 +5,7 @@ using SchoolManagement.DataAccess.Abstract;
 using SchoolManagement.DataAccess.Concrete;
 using SchoolManagement.Entities;
 using SchoolManagement.Entities.Contract;
+using SchoolManagement.Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,12 @@ namespace SchoolManagement.Business.Concrete
     internal class TeacherSyllabusManager : ITeacherSyllabusService
     {
         ITeacherSyllabus _teacherSyllabus;
-        public TeacherSyllabusManager(ITeacherSyllabus teacherSyllabus)
+        IClass _class;
+
+        public TeacherSyllabusManager(ITeacherSyllabus teacherSyllabus, IClass iClass)
         {
             _teacherSyllabus = teacherSyllabus;
+            _class = iClass;
         }
         public IResult Add(TeacherSyllabus teacherSyllabus)
         {
@@ -38,10 +42,10 @@ namespace SchoolManagement.Business.Concrete
             }
             else
             {
-                List<TeacherSyllabus> getTeacherSyllabus = GetAllLessonsByTeacherId(teacherId).Data;
+                List<TeacherSyllabusListDto> getTeacherSyllabus = GetAllLessonsByTeacherId(teacherId).Data;
                 foreach (var item in getTeacherSyllabus)
                 {
-                    _teacherSyllabus.Delete(item);
+                    //_teacherSyllabus.Delete(item);
                 }
                 return new SuccessResult(Messages.TeacherSyllabusDeleted);
 
@@ -49,11 +53,11 @@ namespace SchoolManagement.Business.Concrete
             }
         }
 
-        public IDataResult<List<TeacherSyllabus>> GetAllLessonsByTeacherId(int teacherId)
+        public IDataResult<List<TeacherSyllabusListDto>> GetAllLessonsByTeacherId(int teacherId)
         {
             if (teacherId == 0)
             {
-                return new ErrorDataResult<List<TeacherSyllabus>>(ErrorMessages.TeacherIdIsNull);
+                return new ErrorDataResult<List<TeacherSyllabusListDto>>(ErrorMessages.TeacherIdIsNull);
             }
             return _teacherSyllabus.GetAllLessonsByTeacherId(teacherId);
         }

@@ -33,6 +33,9 @@ namespace SchoolManagement.Business.DependencyResolves.Autofac
             builder.RegisterType<TeacherSyllabusManager>().As<ITeacherSyllabusService>().SingleInstance();
             builder.RegisterType<EfTeacherSyllabus>().As<ITeacherSyllabus>().SingleInstance();
 
+            builder.RegisterType<StudentLectureNoteManager>().As<IStudentLectureNoteService>().SingleInstance();
+            builder.RegisterType<EfStudentLectureNote>().As<IStudentLectureNote>().SingleInstance();
+
             //builder.RegisterType<AuthManager>().As<IAuthService>();
             //builder.RegisterType<JwtHelper>().As<ITokenHelper>();
 

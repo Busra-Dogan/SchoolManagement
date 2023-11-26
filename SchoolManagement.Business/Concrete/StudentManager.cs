@@ -20,14 +20,14 @@ namespace SchoolManagement.Business.Concrete
         {
             _student = iStudet;
         }
-        public IResult Add(Student studentforAdd)
+        public IDataResult<Student> Add(Student studentforAdd)
         {
             if (String.IsNullOrEmpty(studentforAdd.IdentityNumber))
             {
-                return new ErrorResult(ErrorMessages.QutoaNotSmallOrEqualZero);
+                return new ErrorDataResult<Student>(ErrorMessages.QutoaNotSmallOrEqualZero);
             }
-            _student.Add(studentforAdd);
-            return new SuccessResult(Messages.ClassAdded);
+            var response = _student.Add(studentforAdd);
+            return new SuccessDataResult<Student>(response,Messages.ClassAdded);
         }
 
         public IResult Delete(int studentId)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SchoolManagement.Business.Abstract;
 using SchoolManagement.Entities;
+using SchoolManagement.Entities.Contract;
 
 namespace SchoolManagement.API.Controllers
 {
@@ -9,9 +10,13 @@ namespace SchoolManagement.API.Controllers
     public class StudentController : Controller
     {
         IStudentService _studentService;
-        public StudentController(IStudentService studentService)
+        IParameterService _parameterService;
+        IStudentLectureNoteService _studentLectureNoteService;
+        public StudentController(IStudentService studentService, IParameterService parameterService, IStudentLectureNoteService studentLectureNoteService)
         {
             _studentService = studentService;
+            _parameterService = parameterService;
+            _studentLectureNoteService = studentLectureNoteService;
         }
 
         [HttpGet("getall")]
@@ -29,6 +34,19 @@ namespace SchoolManagement.API.Controllers
         public IActionResult AddStudent(Student student)
         {
             var result = _studentService.Add(student);
+            if (result.Success)
+            {
+                var lessons = _parameterService.GetParameterByParamType("LESSON").Data;
+
+                foreach (var item in lessons)
+                {
+                    StudentLectureNote studentLectureNote = new StudentLectureNote();
+                    studentLectureNote.StudentId = result.Data.Id;
+                    studentLectureNote.LessonId = item.ParamCode;
+
+                    _studentLectureNoteService.Add(studentLectureNote);
+                }
+            }
             return Ok(result);
         }
 

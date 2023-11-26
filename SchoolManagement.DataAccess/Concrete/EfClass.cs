@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using SchoolManagement.Core.Constants;
 using SchoolManagement.Core.DataAccess;
 using SchoolManagement.Core.Results;
 using SchoolManagement.DataAccess.Abstract;
@@ -15,7 +16,7 @@ namespace SchoolManagement.DataAccess.Concrete
 {
     public class EfClass : EfEntityRepositoryBase<Class, SchoolManagementDbContext>, IClass
     {
-        public List<ClassListDto> GetAllClass()
+        public IDataResult<List<ClassListDto>> GetAllClass()
         {
             using (var context = new SchoolManagementDbContext())
             {
@@ -30,11 +31,11 @@ namespace SchoolManagement.DataAccess.Concrete
                                     WhichGrade = classtable.WhichGrade,
                                     SystemDate = classtable.SystemDate};
 
-                return result.ToList();
+                return new SuccessDataResult<List<ClassListDto>>(result.ToList(), Messages.StudentLectureNotesListed);
             }
         }
 
-        public Class GetClassById(int classId)
+        public IDataResult<Class> GetClassById(int classId)
         {
             using (var context = new SchoolManagementDbContext())
             {
@@ -51,7 +52,7 @@ namespace SchoolManagement.DataAccess.Concrete
                                  UpdateSystemDate = classtable.UpdateSystemDate
                              };
 
-                return result.FirstOrDefault();
+                return new SuccessDataResult<Class>((Class)result, Messages.StudentLectureNotesListed);
             }
         }
     }

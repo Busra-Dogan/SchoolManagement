@@ -1,5 +1,6 @@
 ﻿using SchoolManagement.Core.Results;
 using SchoolManagement.Entities.Contract;
+using SchoolManagement.Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace SchoolManagement.Business.Abstract
 {
     public interface ITeacherSyllabusService
     {
-        IDataResult<List<TeacherSyllabus>> GetAllLessonsByTeacherId(int teacherId);
+        IDataResult<List<TeacherSyllabusListDto>> GetAllLessonsByTeacherId(int teacherId);
         IResult Add(TeacherSyllabus teacherSyllabus);
         IResult Update(TeacherSyllabus teacherSyllabus);
         IResult Delete(int teacherId);

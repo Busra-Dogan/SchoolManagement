@@ -12,11 +12,11 @@ namespace SchoolManagement.Entities.Contract
         private int id;
         private int studentId;
         private int lessonId;
-        private float note1;
-        private float note2;
-        private float note3;
-        private float average;
-        private bool isPassed;
+        private int note1 = 0;
+        private int note2 = 0;
+        private int note3 = 0;
+        private float average = 0;
+        private bool isPassed = false;
 
         public int Id
         {
@@ -33,17 +33,17 @@ namespace SchoolManagement.Entities.Contract
             get => lessonId;
             set => lessonId = value;
         }
-        public float Note1
+        public int Note1
         {
             get => note1; 
             set => note1 = value;
         }
-        public float Note2
+        public int Note2
         {
             get => note2;
             set => note2 = value;
         }
-        public float Note3
+        public int Note3
         {
             get => note3; 
             set => note3 = value;

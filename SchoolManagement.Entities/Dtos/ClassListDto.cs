@@ -14,6 +14,5 @@ namespace SchoolManagement.Entities.Dtos
         public int Quota { get; set; }
         public string SchoolName { get; set; }
         public int WhichGrade { get; set; }
-        public DateTime SystemDate { get; set; }
     }
 }

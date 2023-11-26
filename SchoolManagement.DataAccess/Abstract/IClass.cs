@@ -1,4 +1,5 @@
 ﻿using SchoolManagement.Core.DataAccess;
+using SchoolManagement.Core.Results;
 using SchoolManagement.Entities;
 using SchoolManagement.Entities.Dtos;
 using System;
@@ -11,8 +12,8 @@ namespace SchoolManagement.DataAccess.Abstract
 {
     public interface IClass : IEntityRepository<Class>
     {
-        List<ClassListDto> GetAllClass();
-        Class GetClassById(int classId);
+        IDataResult<List<ClassListDto>> GetAllClass();
+        IDataResult<Class> GetClassById(int classId);
 
     }
 }

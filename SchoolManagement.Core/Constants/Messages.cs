@@ -40,6 +40,13 @@ namespace SchoolManagement.Core.Constants
         public static string GetTeacherSyllabus = "İlgili öğretmenin ders programı bilgileri başarılı bir şekilde getirilmiştir.";
         public static string TeacherSyllabusUpdated = "İlgili öğretmenin ders programı bilgileri başarılı bir şekilde güncellenmiştir.";
 
+        public static string StudentLectureNoteAdded = "Öğrenci notları sisteme başarılı bir şekilde kaydedilmiştir.";
+        public static string StudentLectureNotesListed = "Öğrenci notları başarılı bir şekilde listelenmiştir.";
+        public static string GetLectureNoteById = "Not bilgisi getirildi.";
+        public static string DeleteLectureNoteById = "Not bilgisi silindi.";
+
+
+
     }
 
     public static class ErrorMessages
@@ -62,6 +69,13 @@ namespace SchoolManagement.Core.Constants
         public static string TeacherSyllabusInfoNotFound = "Öğretmen ders programı bilgisi bulunamadı.";
 
         public static string StudentInfoNotFound = "Öğrenci bilgisi bulunamadı.";
+        public static string StudentIdIsNull = "Öğrenci bilgisi boş gönderilemez.";
+
+        public static string StudentLectureNotesNotFound = "Öğrenci notları bulunamadı.";
+        public static string LectureNotesNotFound = "Not bilgisi bulunamadı.";
+        public static string LectureNoteNotDeleted = "Not bilgisi silinemedi.";
+
+
 
 
 

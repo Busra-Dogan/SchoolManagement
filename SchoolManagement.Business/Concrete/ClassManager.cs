@@ -69,7 +69,7 @@ namespace SchoolManagement.Business.Concrete
 
         public IDataResult<List<ClassListDto>> GetAllClass()
         {
-            List<ClassListDto> AllClasses = _class.GetAllClass();
+            List<ClassListDto> AllClasses = _class.GetAllClass().Data;
 
             if (AllClasses != null && AllClasses.Count != 0)
             {
@@ -83,7 +83,7 @@ namespace SchoolManagement.Business.Concrete
 
         public IDataResult<Class> GetClassById(int classId)
         {
-            Class getClassbyId = _class.GetClassById(classId);
+            Class getClassbyId = _class.GetClassById(classId).Data;
             
             if (getClassbyId != null)
             {

@@ -15,16 +15,21 @@ namespace SchoolManagement.DataAccess.Concrete
 {
     public class EfTeacherSyllabus : EfEntityRepositoryBase<TeacherSyllabus, SchoolManagementDbContext>, ITeacherSyllabus
     {
-        public IDataResult<List<TeacherSyllabus>> GetAllLessonsByTeacherId(int teacherId)
+        public IDataResult<List<TeacherSyllabusListDto>> GetAllLessonsByTeacherId(int teacherId)
         {
             using (var context = new SchoolManagementDbContext())
             {
                 var result = from teacherSyllabus in context.TEACHERSYLLABUS
+                             join day in context.PARAMETER on teacherSyllabus.DayId equals day.ParamCode
+                             join teacher in context.TEACHER on teacherSyllabus.TeacherId equals teacher.Id
                              where teacherSyllabus.TeacherId == teacherId
-                             select new TeacherSyllabus
+                             where day.ParamType == "DAY"
+
+                             select new TeacherSyllabusListDto
                              {
                                  Id = teacherSyllabus.Id,
                                  DayId = teacherSyllabus.DayId,
+                                 Day = day.ParamValue,
                                  Lesson1 = teacherSyllabus.Lesson1,
                                  Lesson2 = teacherSyllabus.Lesson2,
                                  Lesson3 = teacherSyllabus.Lesson3,
@@ -37,16 +42,17 @@ namespace SchoolManagement.DataAccess.Concrete
                                  Lesson10 = teacherSyllabus.Lesson10,
                                  LessonTimeId = teacherSyllabus.LessonTimeId,
                                  TeacherId = teacherSyllabus.TeacherId,
+                                 TeacherNameSurname = teacher.NameSurname,
                                  SystemDate = teacherSyllabus.SystemDate,
                                  UpdateSystemDate = teacherSyllabus.UpdateSystemDate
                              };
                 if (result == null || result.ToList().Count == 0)
                 {
-                    return new ErrorDataResult<List<TeacherSyllabus>>(ErrorMessages.TeacherSyllabusInfoNotFound);
+                    return new ErrorDataResult<List<TeacherSyllabusListDto>>(ErrorMessages.TeacherSyllabusInfoNotFound);
                 }
                 else
                 {
-                    return new SuccessDataResult<List<TeacherSyllabus>>(result.ToList(), Messages.GetTeacherSyllabus);
+                    return new SuccessDataResult<List<TeacherSyllabusListDto>>(result.ToList(), Messages.GetTeacherSyllabus);
                 }
 
             }

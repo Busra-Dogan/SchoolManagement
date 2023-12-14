@@ -38,9 +38,9 @@ namespace SchoolManagement.API.Controllers
                     Id = item.Id,
                     StudentId = item.StudentId,
                     LessonId = item.LessonId,
-                    Note1 = (int)(item.Note1 == null ? 0 : item.Note1),
-                    Note2 = (int)(item.Note2 == null ? 0 : item.Note2),
-                    Note3 = (int)(item.Note3 == null ? 0 : item.Note3),
+                    Note1 = (double)(item.Note1 == null ? 0 : item.Note1),
+                    Note2 = (double)(item.Note2 == null ? 0 : item.Note2),
+                    Note3 = (double)(item.Note3 == null ? 0 : item.Note3),
                     Average = (float)item.Average,
                     IsPassed = (bool)item.IsPassed
                 };

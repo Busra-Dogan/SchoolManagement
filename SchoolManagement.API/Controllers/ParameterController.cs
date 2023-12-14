@@ -14,7 +14,7 @@ namespace SchoolManagement.API.Controllers
         }
 
 
-        [HttpGet("getParameterByParamType")]
+        [HttpGet("getParameterByParamType/{paramType}")]
         public IActionResult GetParameterByParamType(string paramType)
         {
             var result = _parameterService.GetParameterByParamType(paramType);

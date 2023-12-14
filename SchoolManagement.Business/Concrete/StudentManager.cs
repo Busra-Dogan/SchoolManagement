@@ -27,7 +27,7 @@ namespace SchoolManagement.Business.Concrete
                 return new ErrorDataResult<Student>(ErrorMessages.QutoaNotSmallOrEqualZero);
             }
             var response = _student.Add(studentforAdd);
-            return new SuccessDataResult<Student>(response,Messages.ClassAdded);
+            return new SuccessDataResult<Student>(response,Messages.StudentAdded);
         }
 
         public IResult Delete(int studentId)

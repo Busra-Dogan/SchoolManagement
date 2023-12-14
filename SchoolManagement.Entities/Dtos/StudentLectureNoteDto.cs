@@ -15,9 +15,9 @@ namespace SchoolManagement.Entities.Dtos
         public string? StudentName { get; set; }
         public string? LessonName { get; set; }
         public string? ClassName { get; set; }
-        public int?  Note1 { get; set; }
-        public int? Note2 { get; set; }
-        public int? Note3 { get; set; }
+        public double?  Note1 { get; set; }
+        public double? Note2 { get; set; }
+        public double? Note3 { get; set; }
         public double Average { get; set; }
         public bool? IsPassed { get; set; }
     }
